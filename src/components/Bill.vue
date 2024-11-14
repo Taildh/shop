@@ -1,9 +1,9 @@
 <!-- src/components/Bill.vue -->
 <template>
-  <div class="w-full md:w-1/3 p-4 bg-gray-100">
-    <h2 class="text-2xl font-bold mb-4">Bill</h2>
+  <div class="bg-gray-100 p-4 w-full md:w-1/3">
+    <h2 class="mb-4 font-bold text-2xl">Hóa Đơn</h2>
     <div class="mb-4">
-      <div v-if="billItems.length === 0" class="text-gray-500">No products added to the bill.</div>
+      <div v-if="billItems.length === 0" class="text-gray-500"></div>
       <div v-else id="PrintMyBill">
         <div
           v-for="item in billItems"
@@ -17,21 +17,21 @@
           <div class="flex items-center">
             <button
               @click="decreaseQuantity(item)"
-              class="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+              class="bg-red-500 hover:bg-red-600 px-2 py-1 rounded text-white"
             >
               -
             </button>
             <span class="mx-2">{{ item.quantity }}</span>
             <button
               @click="increaseQuantity(item)"
-              class="px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+              class="bg-green-500 hover:bg-green-600 px-2 py-1 rounded text-white"
             >
               +
             </button>
           </div>
         </div>
-        <div class="mt-4 border-t pt-2">
-          <p class="text-lg font-bold">Tổng tiền: {{ formatCurrency(total) }}</p>
+        <div class="mt-4 pt-2 border-t">
+          <p class="font-bold text-lg">Tổng tiền: {{ formatCurrency(total) }}</p>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
     <button
       @click="printBill"
       v-print="'#PrintMyBill'"
-      class="w-full bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+      class="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded w-full text-white"
     >
       In Hóa Đơn
     </button>
@@ -70,7 +70,7 @@ export default {
     }
 
     const decreaseQuantity = (item) => {
-      if (item.quantity > 1) {
+      if (item.quantity > 0) {
         emit('update-bill', { ...item, quantity: item.quantity - 1 })
       }
     }

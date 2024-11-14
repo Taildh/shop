@@ -1,7 +1,7 @@
 <!-- src/App.vue -->
 <template>
-  <div class="min-h-screen bg-gray-200 p-6">
-    <div class="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
+  <div class="bg-gray-200 p-6 min-h-screen">
+    <div class="flex md:flex-row flex-col bg-white shadow-lg rounded-lg overflow-hidden">
       <!-- Product List -->
       <ProductList :products="products" @add-to-bill="handleAddToBill" />
 
@@ -47,6 +47,8 @@ export default {
       const index = billItems.value.findIndex(item => item.id === updatedItem.id);
       if (index !== -1) {
         billItems.value[index].quantity = updatedItem.quantity;
+        console.log(billItems.value[index].quantity);
+        
         if (billItems.value[index].quantity === 0) {
           billItems.value.splice(index, 1);
         }
